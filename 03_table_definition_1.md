@@ -29,6 +29,7 @@
 
 ## Discsテーブル
 - 要件上track_numというカラムは必要ありません。
+- ディスク番号を保存できるようにしましょう。
 - products_id → product_id に変更
 
 ## Songsテーブル
