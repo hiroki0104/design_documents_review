@@ -6,10 +6,13 @@
 - テーブル名は全て小文字で複数形にする。
 - 商品IDのカラム名はproduct_idとする。
 - テーブル名はスネークケースでかく。
+- 主キーとなるカラム名はidでよい。 
 
 ## Admin
 - admin_idはPKであるのにPKの欄に○がついていない。
 - admin_idのAUTO INCREMENTとINDEXに○をつける。
+- メールアドレスのカラム名はdeviseでデフォルトで作られるemailにする。
+- パスワードのカラム名はdeviseでデフォルトで作られるencrypted_passwordにする。
 
 ## Users
 - 名前に関する4つのカラム名についてlとfではわかりにくいため、lastとfirstにする。
@@ -20,11 +23,13 @@
 - member_statusはboolean型でおく。
 - 退会ステータスのカラムはboolean型のためわかりやすくis_validの様に疑問文調でかく。
 - 退会ステータスカラムの備考にtrueとfalseがそれぞれどの状態を表しているのかを記載する。
+- メールアドレスのカラム名はdeviseでデフォルトで作られるemailにする。
+- パスワードのカラム名はdeviseでデフォルトで作られるencrypted_passwordにする。
 
 ## Products
 - productsテーブルはdiscsテーブルの親なのでdisc_idカラムはいらない。
 - ジャンル・レーベル・アーティストIDはFKであるのでFKの欄に○をつける。
-- ジャケット画像はinteger型の画像idで管理する。
+- ジャケット画像はstring型の画像idで管理する。
 - cd_titleのINDEXに○はいらない。
 - 在庫数は入荷数と発注数から計算できるのでカラムはいらない。
 - 在庫ステータスでなく販売ステータスのカラムをboolean型で用意する。
@@ -38,47 +43,50 @@
 ## Songs
 - PKであるsong_idがない。
 - disc_idにAUTO INCREMENTは必要ない。
-- 曲名のカラム名はsongよりsong_nameなどの方がわかりやすい。
+- 曲名のカラム名はsongよりnameなどの方がわかりやすい。
 - 曲名のカラムのデータ型はstring型が適切。
 - 曲の順序を表すカラムを追加する。
 
 ## Labels
 - PKであるlabel_idがない。
 - このテーブルはproductsテーブルに対して親なので、現在のFKは必要ない。
-- labelカラムはlabel_nameという名前にし、カラム説明も「レーベル名」とする
+- labelカラムはnameという名前にし、カラム説明も「レーベル名」とする
 
 ## Artists
 - PKであるartist_idがない。
 - このテーブルはproductsテーブルに対して親なので、現在のFKは必要ない。
-- artistカラムはartist_nameという名前にし、データ型をstring型にする。
+- artistカラムはnameという名前にし、データ型をstring型にする。
 
 ## Genre
 - PKであるgenre_idがない。
 - このテーブルはproductsテーブルに対して親なので、現在のFKは必要ない。
-- genreカラムはgenre_nameという名前にし、データ型をstring型にする。
+- genreカラムはnameという名前にし、データ型をstring型にする。
 
 ## Cart item
 - PKであるcart_item_idがない。
 - user_idにAUTO INCREMENTとINDEXは必要ない。
 - 商品IDのデータ型をinteger型にする。
-- 購入枚数のカラム名をスネークケースでかく。
+- まだカートの時点では購入していないので、カラム名を単純に枚数などにする。
+- 枚数のカラム名をスネークケースでかく。
 - 小計金額は算出できるのでカラムは必要ない。
 
 ## Buy details
-- 購入詳細IDのカラム名はbuy_detail_idとする。
-- このテーブルはproductテーブルとbuyテーブルの子に当たるので、FKとしてproduct_idとbuy_idというカラムを持たせる。
+- テーブル名をorders_detailsなど管理者視点の名前にする。
+- 購入詳細IDのカラム名はorder_detail_idとする。
+- このテーブルはproductテーブルとbuyテーブルの子に当たるので、FKとしてproduct_idとorder_idというカラムを持たせる。
 - 購入枚数のカラム名をスネークケースでかく。
 - 小計金額は算出できるのでカラムは必要ない。
 - 購入時価格のカラムを持たせる。
 
 ## Buy
-- このテーブルはbuy_detailsテーブルに対して親であるため、購入詳細IDのカラムは必要ない。
+- テーブル名をordersなど管理者視点の名前にする。
+- このテーブルはorder_detailsテーブルに対して親であるため、購入詳細IDのカラムは必要ない。
 - 支払方法のカラム名はpayment_methodなどの方が適切。
 - 支払方法はinteger型にして、enum型で管理する。
 - 購入日のカラムは登録日と同じ意味なので無くてよい。
 - 配送先の郵便番号と宛名を管理するカラムがない。
 - 配送ステータスのカラムがない。
-- 支払い合計のカラムはstockでなく、paymentなどの方が適切。
+- 支払い合計のカラムはstockでなく、total_paymentなどの方が適切。
 
 # 注意
 * マークダウン形式で記入してください。
