@@ -13,7 +13,7 @@
 
 # public/orders
 - urlのend_users/:end_user_idは全て不要
-- 注文履歴を一覧する一覧するindexアクションが必要
+- 注文履歴を一覧するindexアクションが必要
 - 購入情報を確認する画面及びアクションが必要
 - 購入の確定を示す画面及びアクションが必要
 - 注文詳細showアクションが必要
@@ -29,7 +29,7 @@
 - newアクションのurlがindexアクションと重複しているため、/items/newなどとする
 - destroyアクションは要件にないため不要
 
-# admin/end_genres
+# admin/genres
 - updateアクションが必要
 
 # admin/end_users
