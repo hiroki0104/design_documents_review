@@ -4,7 +4,7 @@
 - user_tel, user_passwordなども同様
 
 ## admins
-- 
+- admin_idにindexを付与したい
 
 ## users
 - user_l_nameなどと省略しないほうが良い
@@ -12,17 +12,22 @@
 - member_statusだと機能がわかりにくい
 - member_statusのデータ型がintegerとなっているにも関わらず、DEFAULTがFALSEはおかしい
 - member_statusのデータ型にenumは違和感がある。備考に書きたい
+- 名前は性ではなく姓が正しい
+- controller名はusersではなくend_userなどとしたほうがよい
 
 ## ships
 - テーブル名がshipsだとわかりにくい
 - ship_nameだと機能がわかりにくい。
+- 主キーにindexを付与したい
+- 電話番号は不要
 
 ## products
 - products_idと複数形になってるいるが、不適切
 - image_idにNOT NULL属性は不要
 - image_idのDEFAULTとして"画像準備中"は不適切
 - cd_titleだと機能が不明瞭
-- disc_numなどと省略形を使わないほうがいい
+- 販売ステータス（販売中、販売停止中）を示すカラムがほしい
+- 販売日を示すカラムがほしい
 
 ## discs
 - products_idと複数形になっているが、不適当
@@ -43,12 +48,14 @@
 ## cart_items
 - カラム名がCart_item_idと大文字になっているのは不適当
 - products_idと複数形になっているのは不適当
-- まだ購入しているわけではないのでbuy_num、購入枚数は不適当
+- buy numカラムに_が抜けている
 
 ## order_details
 - products_idと複数形になっているのは不適当
 - product_idはFKに指定する
 - created_at, updated_atカラムの説明が"販売登録日時"などとなっているのは不適切
+- 購入時価格は税込みの方がよい
+- order_detail_Idと大文字を使うのは不適切
 
 ## orders
 - カラム名としてpayだとわかりにくい
@@ -56,6 +63,7 @@
 - ship_nameだとわかりにくい
 - ship_costだとわかりにくい
 - 単にtotalだとなんの合計かわかりにくい
+- 配送ステータス（配送状況）を示すカラムがない
 
 # 注意
 * マークダウン形式で記入してください。
