@@ -1,76 +1,118 @@
-## テーブル定義書1
+# テーブル定義書1
 
-# 全体
+## 全体
 - idのカラム名は~_idではなく、単にidでよい
+ > PKとしてのidのカラム名~idとせず、単にidとしましょう
 - 配送先テーブルが必要
+ > 配送先を管理するテーブルが必要です
 - 入荷テーブルが必要
+ > 入荷を管理するテーブルが必要です
 - created_at, updated_atカラムの説明がすべてユーザ〜となっているのは不適当
+ > created_at, updated_atカラムの説明を見直してみましょう
 
-# Admin
+## Admin
 - テーブル名は複数形とする
+ > テーブル名は複数形にしましょう
 - idをPKとする必要がある
+ > PKを設定しましょう
 - admin_email, admin_passwordは単にemail, passwordでよい
-- 
-# Users
+ > admin_email, admin_passwordとせず、単にemail, passwordとしたほうがわかりやすいです
+## Users
 - テーブル名はend_usersテーブルなどとすほうがよい
+ > テーブル名はend_usersなどとするほうがわかりやすいです
 - カラム名にuser_l_nameなどと略語を使わないほうがよい
+ > カラム名に略語を使うのは控えましょう。
 - user_l_name, user_l_kana, user_telなど、userを付ける必要はない
+ > user_l_nameなどuserをつけないほうがわかりやすいです
 - user_f_name, user_f_kanaにもNOT NULL制約を付与する
+ > NOT NULL制約を見直してみましょう
 - user_l_nameの備考として”名前”は端的すぎるし、不要
+ > user_l_nameの備考を見直してみましょう
 - zip_code, telカラムのデータ型はstringとする。（0から始まる場合があるため）。備考も削除する
+ > zip_code, telカラムのデータ型がintegerとなっていますが、0から始まる場合を考慮しましょう。
 - 配送先テーブルがあるため、ship_addressカラムは不要
+ > 配送先テーブルがあるため、ship_addressカラムは不要です
 - member_statusカラムの名称がわかりにくいため、is_availableなどとし、データ型をboolean型としたい
+ > member_statusではその機能が不明瞭です。よりわかりやすい名称にし、データ型やDEFAULTを見直してみましょう。
 
-# Products
+## Products
 - genre_id, label_id,artist_idをFKに指定する
+ > FKの指定が必要です。考えてみましょう。
 - cd_image, cd_titileは単にimage, titleでよい
+ > cd_image, cd_titleは単にimage, titleとしたほうがわかりやすいです
 - imageにDEFAULTとしてnullを指定する必要はない
+ > imageのDEFAULTにnullを指定した理由を教えて下さい
 - imageカラムのデータ型はstringが望ましい
+ > imageカラムのデータが型はstringとしましょう
 - 商品の販売ステータス（販売中か販売停止中か）を示すカラムがほしい
+ > 商品の販売ステータス（販売中か販売停止中か）を示すカラムが必要です
 - cd_imageカラム名は末尾に_idとつけたい
-- 商品の販売ステータス（販売中か販売停止中か）を示すカラムがほしい
+ > refileを使う場合、カラム名がcd_imageだと不適切です。考えてみましょう。
 
-# Discs
+## Discs
 - products_idカラムでproductsと複数形になっているのは不適切
-
-# Songs
+ > products_idカラムでproductｓと複数形になっているのは不適切です
+ 
+## Songs
 - 名前を示すカラム名はsongではなくnameが適当
+ > カラム名がsongでは機能がわかりにくいので適切な名称をつけましょう
 - ↑のデータ型はintegerではなくstring
+ > 名前を表すカラムのデータ型がintegerとなっていますが、不適切です。
 
-# Labels
+## Labels
 - PKとしてidが必要
+ > PKとしてidが必要です
 - label名を示すカラムとしてはlabelではなくnameが適当
+ > カラム名がlabelだとわかりにくいので適切な名称をつけましょう
 
-# Artists
+## Artists
 - PKとしてidが必要
+ > PKとしてidが必要です
 - アーティスト名を示すカラムとしては、artistではなくnameなどが適当
+ > カラム名がartistだと機能がわかりにくいので、適切な名称をつけましょう。
 - ↑のデータ型はintegerではなくstring
-
-# Genre
+ > 名前を表すカラムのデータ型がintegerは不適切です
+## Genre
 - テーブル名はGenresとしたい
+ > テーブル名は複数形にしましょう
 - ジャンル名を示すカラムとしてはgenreではなくnameなどが適当
+ > カラム名がgenreだと機能がわかりにくいので適切な名称をつけましょう。
 - ↑のデータ型はintegerではなくstring
-
-# Cart item
+ > 名前を表すカラムのデータ型がintegerは不適切です
+ 
+## Cart item
 - テーブル名はCart_itemsと複数形にする
+ > テーブル名は複数形にしましょう
 - PKとしてidが必要
+ > PKとしてidが必要です
 - products_idではなく、単数形のproduct_id。データ型はinteger
+ > FKのproducts_idが複数形となっているのは不適切です。また、データ型を追加しましょう。
 - 購入枚数buy_numはすでに購入しているわけではないので単に数量amountなどとするほうがよい。
-- 
+ > まだ購入しているわけではないので、buy_numは不適切です。適切な名称を考えましょう。また、カラム名には空白は使用できませんので、アンダーバーを用いましょう。
 
-# Buy details
+## Buy details
 - テーブル名は管理者側から見てorder_detailsなどとするほうが適切
+ > テーブル名は管理者側から考えて、order_detailsなどとしましょう
 - buy_numはわかりにくいため、単にamountなどとしたい。
+ > buy_numではわかりにくいため、適切な名称を考えましょう。また、カラム名には空白は使用できませんので、アンダーバーを用いましょう。
 - 購入id(buy_id)のデータ型はinteger、not null制約も付与
+ > buy_idにデータ型を追加し、not null制約を付与しましょう
 
-# Buy
+## Buy
 - テーブル名は複数形にする
+ > テーブル名は複数形にしましょう
 - payだとわかりにくい。（支払い方法は名詞系のpaymentとするのが適切）
+ > カラム名がpayだと機能がわかりにくいので、適切な名称をつけましょう
 - 支払い方法を表すカラムのデータ型はinteger型にする
+ > 支払い方法を表すカラムのデータ型はinteger型にする方がわかりやすいです
 - テーブル名は管理者側から見てordersなどとするほうが適切
+ > テーブル名は管理者側から見てordersなどとするほうが適切です
 - 注文状況（配送済、振込済みなど）を表すカラムが必要
+ > 注文状況（配送済、振込済みなど）を表すカラムが必要です
 - ship_addressなどは単にaddressなどとしてよい
+ > ship_addressなどは単にaddressなどとたしたほうがわかりやすいです
 - カラム名がstockだとわかりにくい
+ > カラム名がstockだと機能がわかりにくいので、適切な名前をつけましょう。
 
 
 
