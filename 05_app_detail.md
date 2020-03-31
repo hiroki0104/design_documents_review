@@ -36,8 +36,8 @@
  - destroyアクションが必要
 
 # admin/order_items
-- こちらorder_itemsは不要
-- 代わりにorderコントローラが必要
+- こちらのorder_itemsコントローラは不要
+- 代わりにordesrコントローラが必要
 
 # 注意
 * マークダウン形式で記入してください。
